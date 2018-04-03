@@ -1,17 +1,11 @@
+import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import Home from './Home';
-import Details from './Details';
+import { AppNavigator } from './navigator/AppNavigator';
 
-export default StackNavigator(
-  {
-    Home: {
-      screen: Home,
-    },
-    Details: {
-      screen: Details,
-    },
-  },
-  {
-    initialRouteName: 'Home',
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppNavigator />
+    );
   }
-);
+}
