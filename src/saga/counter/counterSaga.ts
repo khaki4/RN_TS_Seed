@@ -1,11 +1,11 @@
 import { all, fork, call, put, take } from "redux-saga/effects";
 import * as fromCounter from "../../reducers/counter";
 import { NavigationActions } from 'react-navigation';
+import { AppNavigator } from '../../navigator/AppNavigator';
 
 function* goDetail(action) {
   console.log('work goDetail');
-  console.log(NavigationActions.navigate);
-  yield put(NavigationActions.navigate({ routeName: 'Detail' }));
+  yield put(NavigationActions.navigate({ routeName: 'Details' }));
 }
 
 export function* workIncrease() {

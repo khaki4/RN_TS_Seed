@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import * as fromCounter from '../reducers/counter';
 
-class HomeScreen extends React.Component {
+class HomeScreen extends React.Component<any> {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
