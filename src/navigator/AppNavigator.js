@@ -1,8 +1,8 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import Home from '../screens/Home';
 import Details from '../screens/Details';
 
-const AppNavigator = StackNavigator(
+export const AppNavigator = StackNavigator(
   {
     Home: {
       screen: Home,
@@ -16,4 +16,3 @@ const AppNavigator = StackNavigator(
   }
 );
 
-export { AppNavigator };

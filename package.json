@@ -14,6 +14,7 @@
     "precommit": "lint-staged && tsc"
   },
   "dependencies": {
+    "prop-types": "^15.6.1",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.0",
     "react-native-navigation": "^1.1.431",
