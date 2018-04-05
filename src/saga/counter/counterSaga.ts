@@ -3,9 +3,15 @@ import * as fromCounter from "../../reducers/counter";
 import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../../navigator/AppNavigator';
 
+
 function* goDetail(action) {
   console.log('work goDetail');
   yield put(NavigationActions.navigate({ routeName: 'Details' }));
+}
+
+function* goHome(action) {
+  console.log('work goHome');
+  yield put(NavigationActions.back());
 }
 
 export function* workIncrease() {
@@ -24,6 +30,14 @@ export function* watchGoDetail() {
   }
 }
 
+export function* watchGoHome() {
+  while (true) {
+    console.log("saga watch watchGoHome");
+    const action = yield take(fromCounter.GO_HOME);
+    yield call(goHome, action);
+  }
+}
+
 export function* watchRequestIncrease() {
   while (true) {
     console.log("saga requestIncrement");
@@ -32,4 +46,4 @@ export function* watchRequestIncrease() {
   }
 }
 
-export default [watchRequestIncrease, watchGoDetail];
+export default [watchRequestIncrease, watchGoDetail, watchGoHome];

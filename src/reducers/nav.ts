@@ -7,7 +7,7 @@ const initialNavState = AppNavigator.router.getStateForAction(
 );
 
 export default (state = initialNavState, action) => {
-  console.log('state:', state);
+  console.log('state nav:', state);
   switch (action.type) {
     case 'Home':
       return {

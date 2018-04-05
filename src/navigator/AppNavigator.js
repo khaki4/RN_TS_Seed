@@ -1,21 +1,54 @@
 import React from 'react';
+import { BackHandler} from "react-native";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
+import Left from '../components/Left';
 
 import Home from '../screens/Home';
 import Details from '../screens/Details';
 import { addListener } from '../util/redux';
 
-export const AppNavigator = StackNavigator({
-  Home: { screen: Home },
-  Details: { screen: Details },
-});
+export const AppNavigator = StackNavigator(
+  {
+    Home: { screen: Home },
+    Details: { screen: Details },
+  },
+  {
+    initialRouteName: 'Home',
+    /* The header config from HomeScreen is now here */
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerLeft: (<Left onPress={(props) => console.log(props)} />),
+    },
+  }
 
-  class AppWithNavigationState extends React.Component {
+);
+
+class AppWithNavigationState extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     nav: PropTypes.object.isRequired,
+  };
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+  }
+  onBackPress = () => {
+    const { dispatch, nav } = this.props;
+    if (nav.index === 0) {
+      return false;
+    }
+    dispatch(NavigationActions.back());
+    return true;
   };
 
   render() {
