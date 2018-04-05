@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "react-native run-ios",
+    "ios": "yarn run rndebugger && react-native run-ios",
     "ard": "react-native run-android",
     "test": "jest",
     "format": "prettier --write",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "compile": "tsc",
     "watch": "tsc -w",
-    "precommit": "lint-staged && tsc"
+    "precommit": "lint-staged && tsc",
+    "rndebugger": "rndebugger-open --revert && rndebugger-open --open"
   },
   "dependencies": {
     "prop-types": "^15.6.1",
@@ -32,10 +33,12 @@
     "@types/react-redux": "^5.0.15",
     "babel-jest": "22.4.1",
     "babel-preset-react-native": "4.0.0",
+    "exp": "^51.4.0",
     "husky": "^0.14.3",
     "jest": "22.4.2",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.1",
+    "react-native-debugger-open": "^0.3.17",
     "react-native-typescript-transformer": "^1.2.3",
     "react-test-renderer": "^16.3.0-alpha.1",
     "tslint": "^5.9.1",

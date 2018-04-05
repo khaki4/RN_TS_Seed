@@ -1,19 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  AppRegistry
 } from 'react-native';
 
 import App from './src';
 
-export default class typescriptStarter extends Component {
-  render() {
-    return (
-      <App />
-    );
-  }
-}
-
-AppRegistry.registerComponent('typescriptStarter', () => typescriptStarter);
+const entryPoint =  () => <App />;
+AppRegistry.registerComponent('typescriptStarter', () => entryPoint);
