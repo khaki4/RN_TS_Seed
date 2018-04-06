@@ -24,7 +24,7 @@ import { BASE_DOMAIN } from "../util/globalConstantUnit";
 import { strings } from "../service/strings";
 import languageService from "../service/LanguageService";
 import countryService from "../service/CountryService";
-import * as fromCounter from "../reducers/counter";
+import * as fromNavi from "../reducers/navigation";
 const KEY = "OWNER-8B1748859C1E4FC5798D1AEDF1818";
 
 const EXCHANGE_URL = BASE_DOMAIN + "/api/auth/exchange";
@@ -101,12 +101,7 @@ class Splash extends Component {
   routeInitPage = () => {
     const authService = new AuthService();
     authService.getFirstStart().then(v => {
-      if (v === "true") {
-        authService.setFirstStart();
-        this.props.goLogin();
-      } else {
-        this.props.goLogin();
-      }
+      this.props.goLogin();
     });
   };
   getVersion() {
@@ -336,7 +331,7 @@ class Splash extends Component {
 }
 
 export default connect(null, {
-  goLogin: fromCounter.goLogin
+  goLogin: fromNavi.goLogin
 })(Splash);
 
 const styles = StyleSheet.create({

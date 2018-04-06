@@ -6,6 +6,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
+import { connect } from 'react-redux';
+import * as fromNavi from "../reducers/navigation";
 import SelectCountry from '../screens/SelectCountry';
 import countryService from '../service/CountryService';
 
@@ -28,9 +30,11 @@ const setPickerInitValue = async () => {
  *  - hideCountryName : 픽커에서 국가이름을 보여줄지 정하는 플레그.
  *  - hideArrow       : 에로우 이미지를 보여줄지 정함
  */
-export default class CountryCodePicker extends PureComponent {
+class CountryCodePicker extends PureComponent {
   static setPickerInitValue = setPickerInitValue;
-
+  static navigationOptions = {
+    header: null
+  };
   constructor(props) {
     super(props);
     this.countryInfo = null;
@@ -85,7 +89,7 @@ export default class CountryCodePicker extends PureComponent {
 
     const goSelectCountry = () => {
       const interfaceProps = new SelectCountry.InterfaceProps(this.countryInfo);
-      // Actions.selectCountry({ ...interfaceProps });
+      this.props.goSelectCountry({ ...interfaceProps })
     };
     const getCountryName = () => (!this.props.hideCountryName && name) || '';
     const getPhoneCode = () => {
@@ -121,6 +125,11 @@ export default class CountryCodePicker extends PureComponent {
     );
   }
 }
+
+export default connect(
+  null,
+  { goSelectCountry: fromNavi.goSelectCountry }
+)(CountryCodePicker);
 
 const defaultStyle = {
   flexDirection: 'row',

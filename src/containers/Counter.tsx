@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Counter from "../components/Counter";
-import * as fromCounter from "../reducers/counter";
+import * as fromNavi from "../reducers/navigation";
 import { connect } from "react-redux";
 
 interface ConnectProps {
@@ -27,9 +27,9 @@ class CounterContainer extends Component<ConnectProps & DispatchProps, {}> {
   }
 }
 
-const { requestIncrement, increment, decrement } = fromCounter;
+const { requestIncrement, increment, decrement } = fromNavi;
 export default connect<ConnectProps, DispatchProps>(
-  (state: fromCounter.AppState) => ({
+  (state: fromNavi.AppState) => ({
     count: state.counter.count
   }),
   { requestIncrement, increment, decrement }

@@ -1,5 +1,5 @@
 import { fork } from "redux-saga/effects";
-import counterSaga from "./counter/counterSaga";
+import counterSaga from "./navSaga";
 
 const sagas = [...counterSaga];
 

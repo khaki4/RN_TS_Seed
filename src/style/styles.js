@@ -1,9 +1,10 @@
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { StyleSheet } from 'react-native';
+import v from '../util/styleValues';
 
-const globalStyles = EStyleSheet.create({
-    containerWithNavbar: {
-        flex: 1,
-        backgroundColor: '$background',
-        justifyContent: 'center',
-    }
+export default StyleSheet.create({
+  containerWithNavbar: {
+    flex: 1,
+    backgroundColor: v.$background,
+    justifyContent: 'center',
+  }
 });

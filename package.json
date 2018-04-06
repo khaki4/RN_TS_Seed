@@ -11,6 +11,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "compile": "tsc",
     "watch": "tsc -w",
+    "precommit": "lint-staged && tsc",
     "rndebugger": "rndebugger-open --revert && rndebugger-open --open"
   },
   "dependencies": {
@@ -58,6 +59,13 @@
     "tslint": "^5.9.1",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2"
+  },
+  "lint-staged": {
+    "{,!(node_modules|typings)}/**/*.{ts,tsx}": [
+      "npm run format",
+      "git add",
+      "npm run lint"
+    ]
   },
   "jest": {
     "preset": "react-native"

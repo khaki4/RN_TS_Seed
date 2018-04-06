@@ -9,6 +9,7 @@ import Splash from '../screens/Splash';
 import Login from '../screens/Login';
 import Details from '../screens/Details';
 import { addListener } from '../util/redux';
+import SelectCountry from "../screens/SelectCountry";
 
 export const AppNavigator = StackNavigator(
   {
@@ -17,6 +18,7 @@ export const AppNavigator = StackNavigator(
     },
     Login: { screen: Login },
     Details: { screen: Details },
+    SelectCountry: { screen: SelectCountry },
   },
   {
     /* The header config from HomeScreen is now here */

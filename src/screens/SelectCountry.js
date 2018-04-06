@@ -5,15 +5,14 @@ import {
   Platform,
   Text,
   TouchableOpacity,
-  Image,
   FlatList,
-  ScrollView,
 } from 'react-native';
 import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper';
+import { NavigationActions } from 'react-navigation';
 import Picker from 'react-native-picker';
+import { connect } from 'react-redux';
 import R from 'ramda';
 import _debounce from 'lodash/debounce';
-import DeviceInfo from 'react-native-device-info';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   TextInputWithButton,
@@ -21,12 +20,20 @@ import {
 import { strings } from '../service/strings';
 import countryService from '../service/CountryService';
 
-const ListItem = ({ item }) => {
+const mapDispatchToProps = dispatch => ({
+  goBack: () => {
+    dispatch(NavigationActions.back())
+  },
+});
+
+const ListItem = connect(null, mapDispatchToProps)((props) => {
+  const { item } = props;
   const { country_name, country_phone_code } = item;
   const onPressListItem = () => {
     console.log('pop with:', item);
     countryService.setCurrentCountryCode(item.country_code);
-    // Actions.pop({ refresh: { countryInfo: item } });
+    console.log(props);
+    props.goBack();
   };
   return (
     <TouchableOpacity
@@ -48,7 +55,9 @@ const ListItem = ({ item }) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
+
+
 
 class ResultListView extends PureComponent {
   keyExtractor = (item, index) => index;
@@ -88,13 +97,13 @@ class InterfaceProps {
     this.globalInfo = globalInfo;
   }
 }
-export default class SelectCountry extends Component {
+class SelectCountry extends Component {
   static InterfaceProps = InterfaceProps;
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      resultList: this.props.globalInfo,
+      resultList: this.props.nav.globalInfo,
       isSpinnerShow: false,
     };
   }
@@ -109,7 +118,7 @@ export default class SelectCountry extends Component {
   }
 
   filterCountryInfo = () => {
-    const { globalInfo } = this.props;
+    const { globalInfo } = this.props.nav.params;
     if (R.isNil(this.state.text.trim()) || this.state.text.trim() === '') {
       console.log('검색어가 없습니다.');
       this.setState(() => ({resultList: globalInfo}));
@@ -151,6 +160,13 @@ export default class SelectCountry extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    nav: state.nav.routes[state.nav.index]
+  })
+)(SelectCountry);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
