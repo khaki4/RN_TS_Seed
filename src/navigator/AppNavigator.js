@@ -5,17 +5,20 @@ import { connect } from 'react-redux';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import Left from '../components/Left';
 
-import Home from '../screens/Home';
+import Splash from '../screens/Splash';
+import Login from '../screens/Login';
 import Details from '../screens/Details';
 import { addListener } from '../util/redux';
 
 export const AppNavigator = StackNavigator(
   {
-    Home: { screen: Home },
+    Splash: {
+      screen: Splash,
+    },
+    Login: { screen: Login },
     Details: { screen: Details },
   },
   {
-    initialRouteName: 'Home',
     /* The header config from HomeScreen is now here */
     navigationOptions: {
       headerStyle: {

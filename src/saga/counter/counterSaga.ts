@@ -1,17 +1,21 @@
 import { all, fork, call, put, take } from "redux-saga/effects";
 import * as fromCounter from "../../reducers/counter";
-import { NavigationActions } from 'react-navigation';
-import { AppNavigator } from '../../navigator/AppNavigator';
-
+import { NavigationActions } from "react-navigation";
+import { AppNavigator } from "../../navigator/AppNavigator";
 
 function* goDetail(action) {
-  console.log('work goDetail');
-  yield put(NavigationActions.navigate({ routeName: 'Details' }));
+  console.log("work goDetail");
+  yield put(NavigationActions.navigate({ routeName: "Details" }));
 }
 
 function* goHome(action) {
-  console.log('work goHome');
+  console.log("work goHome");
   yield put(NavigationActions.back());
+}
+
+function* goLogin(action) {
+  console.log("work goLogin");
+  yield put(NavigationActions.navigate({ routeName: "Login" }));
 }
 
 export function* workIncrease() {
@@ -19,6 +23,14 @@ export function* workIncrease() {
     yield put(fromCounter.increment());
   } catch (error) {
     console.log("errored at increase");
+  }
+}
+
+export function* watchGoLogin() {
+  while (true) {
+    console.log("saga watch watchGoLogin");
+    const action = yield take(fromCounter.GO_LOGIN);
+    yield call(goLogin, action);
   }
 }
 
@@ -46,4 +58,4 @@ export function* watchRequestIncrease() {
   }
 }
 
-export default [watchRequestIncrease, watchGoDetail, watchGoHome];
+export default [watchRequestIncrease, watchGoDetail, watchGoHome, watchGoLogin];

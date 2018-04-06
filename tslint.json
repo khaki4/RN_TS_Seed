@@ -12,7 +12,8 @@
     "trailing-comma": [false],
     "object-literal-sort-keys": [false],
     "no-console": false,
-    "quotemark": false
+    "quotemark": false,
+    "jsx-wrap-multiline": false
   },
   "rulesDirectory": []
 }

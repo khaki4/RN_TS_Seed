@@ -1,0 +1,16 @@
+{
+  "currencyUnitForGlobal": {
+    "kr": {
+      "ko": "원",
+      "ja": "KRW",
+      "en": "KRW",
+      "es": "KRW"
+    },
+    "global": {
+      "ko": "달러",
+      "ja": "USD",
+      "en": "USD",
+      "es": "USD"
+    }
+  }
+}
